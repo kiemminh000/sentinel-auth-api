@@ -1,8 +1,9 @@
 package com.kiemminh.sentinel.core.util;
 
-public final class Constants {
-    public static final String API_PREFIX = "/api";
-    public static final String SECRET_KEY = "change-me";
-
-    private Constants() {}
+public class Constants {
+    // Secret key used to sign JWTs. In production, this key should be at least 256 bits long and stored in an environment variable.
+    public static final String JWT_SECRET = "DayLaMotChiecChiaKhoaBiMatRatDaiVaSieuBaoMatChoDuAnSentinelCuaToi123456789";
+    
+    // Token lifetime: 24 hours (in milliseconds)
+    public static final long JWT_EXPIRATION = 86400000; 
 }

@@ -8,6 +8,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<UserInfo, Long> {
     
-    // Spring Boot automatically translate to: SELECT * FROM users WHERE username = ?
+    // Spring Data automatically derives: SELECT * FROM users WHERE username = ?
     Optional<UserInfo> findByUsername(String username);
 }

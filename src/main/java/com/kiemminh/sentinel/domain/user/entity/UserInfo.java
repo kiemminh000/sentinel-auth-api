@@ -18,7 +18,7 @@ public class UserInfo {
     private String password;
 
     @Column(nullable = false, length = 20)
-    private String role; // Ví dụ: "ROLE_USER", "ROLE_ADMIN"
+    private String role; // Example: "ROLE_USER", "ROLE_ADMIN"
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -26,11 +26,11 @@ public class UserInfo {
     @Column(name = "is_active")
     private boolean isActive;
 
-    // Hook tự động gán thời gian khi tạo mới user
+    // Automatically set the creation time when a new user is created.
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
-        this.isActive = true; // Mặc định user mới sẽ được active
+        this.isActive = true; // New users are active by default.
     }
 
     // Constructors
@@ -42,7 +42,7 @@ public class UserInfo {
         this.role = role;
     }
 
-    // Getters and Setters (Encapsulation)
+    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
