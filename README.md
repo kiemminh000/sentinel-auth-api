@@ -1,25 +1,44 @@
-# Sentinel: Stateless Auth & API Gateway Filter
+# Sentinel Auth API 🛡️
 
-A high-performance, lightweight security boundary backend built with Spring Boot 3. Sentinel is designed to intercept inbound traffic, authenticate users via stateless JWT, and evaluate transaction requests before they reach core business services.
+A stateless Security Gateway and Transaction Filtering API built with Spring Boot 3. 
+It acts as the first line of defense for a downstream Core Banking system.
 
-## 🚀 Project Highlights
-- **Stateless Architecture:** Fully utilizes JSON Web Tokens (JWT) stored in HTTP-only cookies, eliminating server-side session overhead.
-- **Modular Monolith Design:** Domain-driven folder structure ensuring clean boundaries between `auth`, `user`, and `transaction` evaluation domains.
-- **Gateway-Level Interception:** Custom Spring Security filter chains (`OncePerRequestFilter`) to block unauthorized access and malicious request vectors instantly.
-- **Standardized Error Handling:** Centralized `@ControllerAdvice` to guarantee uniform, predictable REST API responses.
-
-## 📂 Architecture & Folder Structure
-This project strictly follows the **Feature-Driven N-Tier Architecture**. Each domain is isolated, maintaining its own Controller, Service, and Data layers.
-
-*See the `src/main/java/com/portfolio/sentinel` directory for the exact implementation.*
+## 🚀 Features
+* **Stateless Authentication:** JWT-based login and token validation.
+* **Security Filter Chain:** Blocks unauthorized requests at the gateway level.
+* **Transaction Risk Evaluation:** Intercepts and validates transactions based on business rules (amount limits, IP blacklisting).
+* **Global Exception Handling:** Centralized `@ControllerAdvice` for standardized API error responses.
 
 ## 🛠️ Tech Stack
-- **Backend:** Java 17, Spring Boot 3 (Spring Web, Spring Security, Spring Data JPA)
-- **Database:** PostgreSQL
-- **Authentication:** JWT (io.jsonwebtoken)
-- **Build Tool:** Maven
+* Java 17 | Spring Boot 3.5.x
+* Spring Security | Spring Data JPA
+* PostgreSQL | JSON Web Tokens (jjwt)
+* Swagger UI (OpenAPI)
 
-## ⚙️ Quick Start
-1. Clone the repository.
-2. Configure your PostgreSQL credentials in `application.yml`.
-3. Run `mvn clean install` followed by `mvn spring-boot:run`.
+## ⚙️ Local Setup Instructions
+
+1. **Clone the repository:**
+```bash
+   git clone [https://github.com/kiemminh000/sentinel-auth-api.git](https://github.com/kiemminh000/sentinel-auth-api.git)
+   ```
+
+2. **Database Setup:**
+   * Open pgAdmin and create a new database named `sentinel_db`.
+
+3. **Environment Variables (CRITICAL):**
+   * Create a file named `.env` in the root directory of the project.
+   * Add your database password and a secure JWT secret key:
+```env
+     DB_PASSWORD=your_postgres_password_here
+     JWT_SECRET=YourSuperSecretKeyForJwtGenerationMustBeLongEnough123!
+     ```
+
+4. **Run the Application:**
+* Use VSCode's Run button or execute the Maven wrapper:
+```bash
+     ./mvnw spring-boot:run
+     ```
+   * *Note: A default test user (`admin` / `123456`) will be auto-generated upon the first successful startup.*
+
+5. **API Documentation:**
+   * Once the server is running, access Swagger UI at: `http://localhost:8080/swagger-ui/index.html`
