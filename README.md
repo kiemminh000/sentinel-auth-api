@@ -19,26 +19,30 @@ It acts as the first line of defense for a downstream Core Banking system.
 
 1. **Clone the repository:**
 ```bash
-   git clone [https://github.com/kiemminh000/sentinel-auth-api.git](https://github.com/kiemminh000/sentinel-auth-api.git)
-   ```
+git clone https://github.com/kiemminh000/sentinel-auth-api.git
+```
 
 2. **Database Setup:**
    * Open pgAdmin and create a new database named `sentinel_db`.
 
 3. **Environment Variables (CRITICAL):**
-   * Create a file named `.env` in the root directory of the project.
-   * Add your database password and a secure JWT secret key:
+* Create a file named `.env` in the root directory of the project.
+* Add your database password and a secure JWT secret key (example):
 ```env
-     DB_PASSWORD=your_postgres_password_here
-     JWT_SECRET=YourSuperSecretKeyForJwtGenerationMustBeLongEnough123!
-     ```
+DB_PASSWORD=your_postgres_password_here
+JWT_SECRET=YourSuperSecretKeyForJwtGenerationMustBeLongEnough123!
+```
 
 4. **Run the Application:**
 * Use VSCode's Run button or execute the Maven wrapper:
 ```bash
-     ./mvnw spring-boot:run
-     ```
-   * *Note: A default test user (`admin` / `123456`) will be auto-generated upon the first successful startup.*
+# On Linux / macOS
+./mvnw spring-boot:run
+
+# On Windows (PowerShell / CMD)
+mvnw.cmd spring-boot:run
+```
+* Note: A default test user (`admin` / `123456`) will be auto-generated upon the first successful startup.
 
 5. **API Documentation:**
    * Once the server is running, access Swagger UI at: `http://localhost:8080/swagger-ui/index.html`
