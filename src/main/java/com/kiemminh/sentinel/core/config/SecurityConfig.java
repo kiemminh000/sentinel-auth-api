@@ -54,8 +54,14 @@ public class SecurityConfig {
             
             // Configure endpoint authorization rules
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() // Allow unauthenticated access to login/register
-                .anyRequest().authenticated()                // Secure all other endpoints
+                .requestMatchers(
+                    "/api/auth/**",
+                    "/v3/api-docs",      // Allow access to the main Swagger documentation file
+                    "/v3/api-docs/**",   // Allow access to Swagger documentation files
+                    "/swagger-ui/**",    // Allow access to the Swagger UI
+                    "/swagger-ui.html"
+                ).permitAll()
+                .anyRequest().authenticated()                // All other endpoints require authentication
             );
 
         // Inject the custom JWT filter before the standard Spring authentication filter
