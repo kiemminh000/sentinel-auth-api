@@ -1,14 +1,21 @@
 package com.kiemminh.sentinel.core.exception;
 
+import org.springframework.http.HttpStatus;
+
+/**
+ * Custom runtime exception to handle domain-specific business errors.
+ */
 public class CustomAPIException extends RuntimeException {
-    private int status;
+    private final HttpStatus status;
+    private final String message;
 
-    public CustomAPIException(int status, String message) {
-        super(message);
+    public CustomAPIException(HttpStatus status, String message) {
         this.status = status;
+        this.message = message;
     }
 
-    public int getStatus() {
-        return status;
-    }
+    public HttpStatus getStatus() { return status; }
+    
+    @Override
+    public String getMessage() { return message; }
 }
